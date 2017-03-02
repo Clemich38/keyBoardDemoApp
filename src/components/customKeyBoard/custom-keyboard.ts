@@ -24,7 +24,6 @@ export class CustomKeyBoard {
     // Outputs
     @Output() cKClickEmit: EventEmitter<any> = new EventEmitter();
 
-    
     // Component reference
     private static m_component: CustomKeyBoard = null;
 
@@ -62,8 +61,6 @@ export class CustomKeyBoard {
 
         if (this.colNb)
             this.m_main_column_nb = this.colNb;
-
-
     }
 
     static get onCKClick() {
