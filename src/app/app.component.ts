@@ -31,6 +31,12 @@ export class MyApp {
     
   }
 
+
+  ngOnInit()
+  {
+    CustomKeyBoard.hide();
+  }
+  
   // Event way
   keyClick(key: number) {
     console.log('From event: ', key);

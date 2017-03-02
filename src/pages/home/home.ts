@@ -8,11 +8,15 @@ import { CustomKeyBoard } from '../../components/customKeyBoard/custom-keyboard'
 })
 export class HomePage {
 
+  public hexStr: string;
+
   constructor(public navCtrl: NavController)
   {
+    this.hexStr = "";
+
     // Subscribe to the click event observable    
     CustomKeyBoard.onCKClick.subscribe((key) => {
-      console.log('Click key ', key);
+      this.hexStr += key;
     })
   }
 
@@ -25,6 +29,7 @@ export class HomePage {
   {
     CustomKeyBoard.hide();
   }
+
 
 
 }

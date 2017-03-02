@@ -20,6 +20,7 @@ export class CustomKeyBoard {
     }
 
     @HostBinding('class.visible') @Input() visible: boolean = true;
+    // @Input() visible: boolean = true;
 
     // Outputs
     @Output() cKClickEmit: EventEmitter<any> = new EventEmitter();

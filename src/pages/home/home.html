@@ -9,4 +9,10 @@
 <ion-content padding>
   <button ion-button secondary outline (click)="showKeyboard()">Show Keyboard</button>
   <button ion-button secondary outline (click)="hideKeyboard()">Hide Keyboard</button>
+
+  <ion-item>
+    <ion-label text-right stacked>Hexadecimal</ion-label>
+    <ion-input #hexInput text-right type="text" pattern="[0-9a-fA-F ]*" (tap)="showKeyboard()" [(ngModel)]="hexStr" [ngModelOptions]="{standalone: true}" readonly="true"></ion-input>
+  </ion-item>
+
 </ion-content>
