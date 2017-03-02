@@ -10,7 +10,7 @@ declare var Hammer: any;
 export class CustomKeyBoard {
 
     // Inputs
-    @Input() keysMain: Array<string>;
+    @Input() keysMain: string[];
     @Input() keysSecondary: Array<string>;
 
     @Input() set width(v: any)
@@ -41,6 +41,8 @@ export class CustomKeyBoard {
     
     constructor(public el: ElementRef, public renderer: Renderer) {
         CustomKeyBoard.m_component = this;
+        this.m_main_column_nb = 3;
+        this.m_secondary_column_nb = 2;
     }
 
     ngOnInit() {

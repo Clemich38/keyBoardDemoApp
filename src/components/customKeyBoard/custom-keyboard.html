@@ -1,5 +1,15 @@
 <div (window:resize)="onWindowResize($event)" class="keyboard-light align-center" [style.width]="m_width">
 	<ng-content select="ion-toolbar"></ng-content>
+
+
+	<div class="kb-row" [style.zoom]="zoom" *ngFor="let n of [0,3,6,9]">
+		<div class="kb-key-wrapper" *ngFor="let m of [0,1,2]">
+			<div class="kb-key" (click)="cKClick($event, keysMain[n + m])">
+				{{keysMain[n + m]}}
+			</div>
+		</div>
+
+<!--
 	<div class="kb-row" [style.zoom]="zoom">
 		<div class="kb-key-wrapper">
 			<div class="kb-key" (click)="cKClick($event, 1)">
@@ -67,5 +77,6 @@
 				z
 			</div>
 		</div>
-	</div>
-	</div>
+	</div>-->
+
+</div>
