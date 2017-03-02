@@ -1,0 +1,71 @@
+<div (window:resize)="onWindowResize($event)" class="keyboard-light align-center" [style.width]="m_width">
+	<ng-content select="ion-toolbar"></ng-content>
+	<div class="kb-row" [style.zoom]="zoom">
+		<div class="kb-key-wrapper">
+			<div class="kb-key" (click)="cKClick($event, 1)">
+				1
+			</div>
+		</div>
+		<div class="kb-key-wrapper">
+			<div class="kb-key" (click)="cKClick($event, 2)">
+				2
+			</div>
+		</div>
+		<div class="kb-key-wrapper">
+			<div class="kb-key" (click)="cKClick($event, 3)">
+				3
+			</div>
+		</div>
+	</div>
+	<div class="kb-row" [style.zoom]="zoom">
+		<div class="kb-key-wrapper">
+			<div class="kb-key" (click)="cKClick($event, 4)">
+				4
+			</div>
+		</div>
+		<div class="kb-key-wrapper">
+			<div class="kb-key" (click)="cKClick($event, 5)">
+				5
+			</div>
+		</div>
+		<div class="kb-key-wrapper">
+			<div class="kb-key" (click)="cKClick($event, 6)">
+				6
+			</div>
+		</div>
+	</div>
+	<div class="kb-row" [style.zoom]="zoom">
+		<div class="kb-key-wrapper">
+			<div class="kb-key" (click)="cKClick($event, 7)">
+				7
+			</div>
+		</div>
+		<div class="kb-key-wrapper">
+			<div class="kb-key" (click)="cKClick($event, 8)">
+				8
+			</div>
+		</div>
+		<div class="kb-key-wrapper">
+			<div class="kb-key" (click)="cKClick($event, 9)">
+				9
+			</div>
+		</div>
+	</div>
+	<div class="kb-row" [style.zoom]="zoom">
+		<div class="kb-key-wrapper">
+			<div class="kb-key" (click)="cKClick($event, 0)">
+				X
+			</div>
+		</div>
+		<div class="kb-key-wrapper">
+			<div class="kb-key" (click)="cKClick($event, 0)">
+				0
+			</div>
+		</div>
+		<div class="kb-key-wrapper">
+			<div class="kb-key" (click)="cKClick($event, 0)">
+				z
+			</div>
+		</div>
+	</div>
+	</div>
