@@ -1,5 +1,9 @@
 <div (window:resize)="onWindowResize($event)" class="align-center" [style.width]="m_width">
-	<ng-content select="ion-toolbar"></ng-content>
+
+	<div class="kb-toolbar">
+		<ion-icon name="arrow-dropdown" (click)="hide()"></ion-icon>
+		<span><ion-icon name="backspace" (click)="deleteClick($event)"></ion-icon></span>
+	</div>
 
 	<div class="kb-row" [style.zoom]="zoom" *ngFor="let n of m_main_rows">
 		<div class="kb-key-wrapper" *ngFor="let m of m_main_cols">

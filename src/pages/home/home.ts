@@ -18,6 +18,11 @@ export class HomePage {
     CustomKeyBoard.onCKClick.subscribe((key) => {
       this.hexStr += key;
     })
+
+    // Subscribe to the delete event observable    
+    CustomKeyBoard.onDeleteClick.subscribe(() => {
+      this.hexStr = this.hexStr.slice(0, this.hexStr.length -1);
+    })
   }
 
   public showKeyboard()

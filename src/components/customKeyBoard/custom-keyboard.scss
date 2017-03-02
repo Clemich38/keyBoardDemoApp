@@ -1,15 +1,17 @@
 $kb-key-height: 50px;
+$kb-toolbar-height: 30px;
 $kb-key-font-size: 24px;
 
 // Light theme
 $kb-key-text-light: #444;
-$kb-border-light: #ccc;
+$kb-border-light: #ddd;
 $kb-bg-light: #eee !default;
 
 // Dark theme
 $kb-key-text-dark: #eee;
-$kb-border-dark: #222;
+$kb-border-dark: #333;
 $kb-bg-dark: #444 !default;
+
 
 
 custom-keyboard {
@@ -20,6 +22,16 @@ custom-keyboard {
     transform: translate3d(0,100%,0);
     margin: 0 auto;
 	
+	.kb-toolbar {
+        height: $kb-toolbar-height;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-left: 15px;
+        padding-right: 15px;
+
+    }
+
     .kb-row {
         display: flex;
         flex-direction: row;
@@ -58,6 +70,16 @@ custom-keyboard {
         border-top: 1px solid;
         border-color: $kb-border-light;
 
+        .kb-toolbar {
+            background-color: $kb-border-light;
+            border: none;
+
+            .icon {
+                flex: 1;
+                color: $kb-key-text-light;
+            }
+        }
+
         .kb-key {
             background: $kb-bg-light;
             color: $kb-key-text-light;
@@ -71,6 +93,16 @@ custom-keyboard {
     &.kb-dark {
         border-top: 1px solid;
         border-color: $kb-border-dark;
+
+        .kb-toolbar {
+            background-color: $kb-border-dark;
+            border: none;
+
+            .icon {
+                flex: 1;
+                color: $kb-key-text-dark;
+            }
+        }
 
         .kb-key {
             background: $kb-bg-dark;

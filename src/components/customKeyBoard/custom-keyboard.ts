@@ -24,6 +24,7 @@ export class CustomKeyBoard {
 
     // Outputs
     @Output() cKClickEmit: EventEmitter<any> = new EventEmitter();
+    @Output() deleteEmit: EventEmitter<any> = new EventEmitter();
 
     // Component reference
     private static m_component: CustomKeyBoard = null;
@@ -37,6 +38,7 @@ export class CustomKeyBoard {
 
     // Observables for subscribers to get the events
     private static m_clickObs: any = new Subject();
+    private static m_deleteObs: any = new Subject();
     private static m_showObs: any = new Subject();
     private static m_hideObs: any = new Subject();
     
@@ -68,6 +70,10 @@ export class CustomKeyBoard {
         return this.m_clickObs;
     }
 
+    static get onDeleteClick() {
+        return this.m_deleteObs;
+    }
+
     static get onCKShow() {
         return this.m_showObs;
     }
@@ -80,6 +86,12 @@ export class CustomKeyBoard {
     {
         CustomKeyBoard.onCKClick.next(key);
         this.cKClickEmit.emit(key);
+    }
+
+    public deleteClick(event)
+    {
+        CustomKeyBoard.onDeleteClick.next();
+        this.deleteEmit.emit();
     }
 
     public onWindowResize(event)
@@ -104,11 +116,19 @@ export class CustomKeyBoard {
         if (this.m_component && this.m_component.visible)
         {
             this.m_component.visible = false;
-            setTimeout(() => {
-                callback();
-                CustomKeyBoard.onCKHide.next(); },
-                100);
+            if (callback)
+            {
+                setTimeout(() => {
+                    callback();
+                    CustomKeyBoard.onCKHide.next(); },
+                    100);
+            }
         }
+    }
+
+    public hide()
+    {
+        CustomKeyBoard.hide(null);
     }
 
     static destroy(callback: Function = (success: boolean) => { })
