@@ -11,7 +11,7 @@ export class CustomKeyBoard {
 
     // Inputs
     @Input() keysMain: string[];
-    @Input() keysSecondary: Array<string>;
+    @Input() colNb: number;
 
     @Input() set width(v: any)
     {
@@ -31,22 +31,39 @@ export class CustomKeyBoard {
     // Variables
     private m_width: string;
     private m_main_column_nb;
-    private m_secondary_column_nb;
+    private m_main_cols: any;
+    private m_main_rows: any;
     public zoom: number = 1;
 
     // Observables for subscribers to get the events
     private static m_clickObs: any = new Subject();
     private static m_showObs: any = new Subject();
-    private static M_hideObs: any = new Subject();
+    private static m_hideObs: any = new Subject();
     
     constructor(public el: ElementRef, public renderer: Renderer) {
+
         CustomKeyBoard.m_component = this;
-        this.m_main_column_nb = 3;
-        this.m_secondary_column_nb = 2;
+
+        // Default values
+        this.m_main_column_nb = 5;
+
     }
 
-    ngOnInit() {
+    ngOnInit()
+    {
         this.resize();
+
+        // Init with the @input values
+        if (this.keysMain)
+        {
+            this.m_main_rows = this.range(0, (this.keysMain.length - 1), this.m_main_column_nb);
+            this.m_main_cols = this.range(0, this.m_main_column_nb - 1, 1);
+        }
+
+        if (this.colNb)
+            this.m_main_column_nb = this.colNb;
+
+
     }
 
     static get onCKClick() {
@@ -58,10 +75,9 @@ export class CustomKeyBoard {
     }
 
     static get onCKHide() {
-        return this.M_hideObs;
+        return this.m_hideObs;
     }
-
-      
+ 
     public cKClick(event, key: any)
     {
         CustomKeyBoard.onCKClick.next(key);
@@ -75,14 +91,13 @@ export class CustomKeyBoard {
 
     static show(callback: Function = () => { })
     {
-        console.log("show()");
         if (this.m_component && !this.m_component.visible)
         {
             this.m_component.visible = true;
             setTimeout(() => {
                 callback();
                 CustomKeyBoard.onCKShow.next(); },
-                150);
+                100);
         }
     }
 
@@ -94,7 +109,7 @@ export class CustomKeyBoard {
             setTimeout(() => {
                 callback();
                 CustomKeyBoard.onCKHide.next(); },
-                150);
+                100);
         }
     }
 
@@ -107,9 +122,7 @@ export class CustomKeyBoard {
             callback(true);
         }
         else
-        {
             callback(true);
-        }
     }
 
     private resize()
@@ -118,12 +131,15 @@ export class CustomKeyBoard {
         let currentHeight = window.screen.height;
         this.zoom = referenceHeight >= (currentHeight/2)? 0.5 : 1;//currentHeight / referenceHeight;
     }
+
+    range(min, max, step)
+    {
+        step = step || 1;
+        var tab = [];
+        for (var i = min; i <= max; i += step) {
+            tab.push(i);
+        }
+        return tab;
+    }
 }
 
-
-export interface CustomKeyBoardOptions
-{
-    align?: string;
-    width?: any;
-    visible?: boolean;
-}

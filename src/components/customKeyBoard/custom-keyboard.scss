@@ -1,110 +1,83 @@
+$kb-key-height: 50px;
+$kb-key-font-size: 24px;
 
-$dk-bg-color: transparent;
-$dk-btn-border-size: 1px;
-$dk-btn-height: 50px;
-$dk-btn-font-size: 24px;
+// Light theme
+$kb-key-text-light: #444;
+$kb-border-light: #ccc;
+$kb-bg-light: #eee !default;
 
-// Private variables (mostly default)
-$dk-btn-bg-color: #ccc;
-$dk-btn-border-color: #aaa;
-$dk-btn-text-color: #333;
-$dk-btn-action-color: #333;
-$dk-btn-click-bg-color: #ddd;
-$dk-btn-click-text-color: #444;
-
-$light: #fff !default;
-$dark: #444 !default;
-$opaque-black: rgba(#000, 0.75);
-$opaque-white: rgba(#fff, 0.75);
+// Dark theme
+$kb-key-text-dark: #eee;
+$kb-border-dark: #222;
+$kb-bg-dark: #444 !default;
 
 
 custom-keyboard {
 	position: absolute;
 	left: 0; right: 0; bottom: 0;
-	background: $dk-bg-color;
-	font-size: $dk-btn-font-size;
-	z-index: 5000;
+	font-size: $kb-key-font-size;
     transition: transform linear 100ms;
     transform: translate3d(0,100%,0);
     margin: 0 auto;
+	
+    .kb-row {
+        display: flex;
+        flex-direction: row;
+        
+        // Wrapper
+        .kb-key-wrapper {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            height: $kb-key-height;
+            
+            // Key
+            .kb-key {
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                position: absolute;
+                line-height: $kb-key-height;
+                display: block;
+                margin: 0 auto;
+                -webkit-transition: all 100ms ease-out;
+                -moz-transition: all 100ms ease-out;
+                -o-transition: all 100ms ease-out;
+                -ms-transition: all 100ms ease-out;
+                transition: all 100ms ease-out;
+            }
+        }
+    }
 
     &.visible {
         transform: translate3d(0,0,0);
     }
-	
-    > div {
-        // Row
-        .kb-row {
-            display: flex;
-            flex-direction: row;
-            border-bottom: 1px solid $dk-btn-border-color;
-            
-            // Wrapper
-            .kb-key-wrapper {
-                flex: 1;
-                text-align: center;
-                position: relative;
-                height: $dk-btn-height;
+
+    &.kb-light {
+        border-top: 1px solid;
+        border-color: $kb-border-light;
+
+        .kb-key {
+            background: $kb-bg-light;
+            color: $kb-key-text-light;
                 
-                // Key
-                .kb-key {
-                    display: block;
-                    margin: 0 auto;
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    right: 0;
-                    bottom: 0;
-                    border-right: 1px solid $dk-btn-border-color;
-                    border-left: 1px solid $dk-btn-border-color;
-                    line-height: $dk-btn-height;
-                    
-                    -webkit-transition: all 10ms ease-out;
-                    -moz-transition: all 10ms ease-out;
-                    -o-transition: all 10ms ease-out;
-                    -ms-transition: all 10ms ease-out;
-                    transition: all 10ms ease-out;
-                    
-                    // Number
-                    // .kb-key-label {
-                        // font-size: 1em;
-                        // vertical-align: middle;
-                        // display: inline-block;
-                        // line-height: normal;
-                        // text-align: center;
-                        // margin-top: -0.40em;
-                    //  }
-                    
-                }
-                
-                &.hidden {
-                    visibility: hidden;
-                }
-                    
-                &:first-child .kb-key {
-                    border-right: none;
-                }
-                
-                &:last-child .kb-key {
-                    border-left: none;
-                }
-            }
-            
-            &:first-child {
-                border-top: 1px solid $dk-btn-border-color;
+            &:active {
+                background: darken($kb-bg-light, 15%);
             }
         }
-        
+    }
 
-        &.keyboard-light {
-            [class^="custom-keyboard"] { border-color: darken($light, 10%) !important; }
-            .kb-key {
-                background: $light;
-                color: #444;
-                    
-                &:active {
-                    background: darken($light, 10%);
-                }
+    &.kb-dark {
+        border-top: 1px solid;
+        border-color: $kb-border-dark;
+
+        .kb-key {
+            background: $kb-bg-dark;
+            color: $kb-key-text-dark;
+                
+            &:active {
+                background: darken($kb-bg-dark, 20%);
             }
         }
     }

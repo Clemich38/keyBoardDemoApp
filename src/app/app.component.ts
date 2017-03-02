@@ -13,6 +13,7 @@ export class MyApp {
   rootPage = HomePage;
 
   keysMain: string[];
+  keysSec: string[];
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
@@ -22,7 +23,11 @@ export class MyApp {
       Splashscreen.hide();
     });
 
-    this.keysMain = [ "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c" ];
+    this.keysMain = [ "1", "2", "3", "A", "B",
+                      "4", "5", "6", "C", "D",
+                      "7", "8", "9", "E", "F",
+                      "", "0", "", "", ""];
+
     
   }
 
