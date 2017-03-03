@@ -1,6 +1,15 @@
 <ion-nav [root]="rootPage"></ion-nav>
 
-<custom-keyboard [keysMain]="keysMain"
+<!-- Keyboard with light theme, default columns nb (5), and KeysTab string array for the values-->
+<custom-keyboard [keysMain]="keysTab"
                  (keyClick)="keyClick($event)"
                  class="kb-light">
 </custom-keyboard>
+
+<!-- Keyboard with dark theme, 6 columns, and KeysTab string array for the values-->
+<!--<custom-keyboard [keysMain]="keysTab"
+                 (keyClick)="keyClick($event)"
+                 class="kb-dark"
+                 [colNb]=5
+                 width="100%"> 
+</custom-keyboard>-->
