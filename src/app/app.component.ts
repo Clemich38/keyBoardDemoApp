@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { CustomKeyBoard } from '../components/customKeyBoard/custom-keyboard';
-
 import { HomePage } from '../pages/home/home';
 
 
@@ -12,8 +11,7 @@ import { HomePage } from '../pages/home/home';
 export class MyApp {
   rootPage = HomePage;
 
-  keysMain: string[];
-  keysSec: string[];
+  keysTab: string[];
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
@@ -23,12 +21,15 @@ export class MyApp {
       Splashscreen.hide();
     });
 
-    this.keysMain = [ "1", "2", "3", "A", "B",
+    // Keyboard key tab (used in the app.html template)
+    this.keysTab = [ "1", "2", "3", "A", "B",
                       "4", "5", "6", "C", "D",
                       "7", "8", "9", "E", "F",
                       "", "0", "", "", ""];
 
-    
+    // this.keysTab = ["1", "2", "3", "+", "-",
+    //                 "4", "5", "6", "/", "*",
+    //                 "7", "8", ".", "%", "="];
   }
 
 
@@ -37,8 +38,8 @@ export class MyApp {
     CustomKeyBoard.hide();
   }
   
-  // Event way
+  // Event emitter
   keyClick(key: number) {
-    console.log('From event: ', key);
+    console.log('Event emitter - key: ', key);
   }
 }
