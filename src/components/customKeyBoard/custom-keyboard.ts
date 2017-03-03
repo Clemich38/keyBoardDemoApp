@@ -10,9 +10,8 @@ declare var Hammer: any;
 export class CustomKeyBoard {
 
     // Inputs
-    @Input() keysMain: string[];
+    @Input() keysTab: string[];
     @Input() colNb: number = 5;
-
     @Input() width: string;
 
     @HostBinding('class.visible') @Input() visible: boolean = true;
@@ -48,11 +47,11 @@ export class CustomKeyBoard {
         if (this.colNb)
             this.m_main_column_nb = this.colNb;
 
-        if (this.keysMain)
+        if (this.keysTab)
         {
-            this.m_main_rows = this.range(0, (this.keysMain.length - 1), this.m_main_column_nb);
+            this.m_main_rows = this.range(0, (this.keysTab.length - 1), this.m_main_column_nb);
             this.m_main_cols = this.range(0, this.m_main_column_nb - 1, 1);
-            this.rowNb = Math.floor((this.keysMain.length / this.m_main_column_nb + 1));
+            this.rowNb = Math.floor((this.keysTab.length / this.m_main_column_nb + 1));
         }
 
         this.resize();
@@ -148,7 +147,7 @@ export class CustomKeyBoard {
             this.zoom = 1;
     }
 
-    range(min, max, step)
+    private range(min, max, step)
     {
         step = step || 1;
         var tab = [];
