@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-import { CustomKeyBoard } from '../components/customKeyBoard/custom-keyboard';
 import { HomePage } from '../pages/home/home';
+import { CustomKeyBoard } from '../components/customKeyBoard/custom-keyboard';
 
 
 @Component({
@@ -15,8 +15,6 @@ export class MyApp {
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
@@ -26,10 +24,6 @@ export class MyApp {
                       "4", "5", "6", "C", "D",
                       "7", "8", "9", "E", "F",
                       "", "0", "", "", ""];
-
-    // this.keysTab = ["1", "2", "3", "+", "-",
-    //                 "4", "5", "6", "/", "*",
-    //                 "7", "8", ".", "%", "="];
   }
 
 
@@ -39,7 +33,7 @@ export class MyApp {
   }
   
   // Event emitter
-  keyClick(key: number) {
-    console.log('Event emitter - key: ', key);
+  keyClick(k: string) {
+    console.log('Event emitter - key: ', k);
   }
 }
