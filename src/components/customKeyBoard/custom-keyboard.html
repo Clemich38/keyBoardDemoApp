@@ -9,8 +9,8 @@
 	<!-- Keys -->
 	<div class="kb-row" [style.zoom]="zoom" *ngFor="let n of m_main_rows">
 		<div class="kb-key-cell" *ngFor="let m of m_main_cols">
-			<div class="kb-key" (click)="cKClick($event, keysMain[n + m])">
-				{{keysMain[n + m]}}
+			<div class="kb-key" (click)="cKClick($event, keysTab[n + m])">
+				{{keysTab[n + m]}}
 			</div>
 		</div>
 	</div>
