@@ -11,16 +11,11 @@ export class CustomKeyBoard {
 
     // Inputs
     @Input() keysMain: string[];
-    @Input() colNb: number;
+    @Input() colNb: number = 5;
 
-    @Input() set width(v: any)
-    {
-        let isPercent = String(v).indexOf('%') > -1 ? true : false;
-        this.m_width = parseInt(v) + (isPercent ? '%' : 'px');
-    }
+    @Input() width: string;
 
     @HostBinding('class.visible') @Input() visible: boolean = true;
-    // @Input() visible: boolean = true;
 
     // Outputs
     @Output() cKClickEmit: EventEmitter<any> = new EventEmitter();
@@ -30,11 +25,11 @@ export class CustomKeyBoard {
     private static m_component: CustomKeyBoard = null;
 
     // Variables
-    private m_width: string;
-    private m_main_column_nb;
+    private m_main_column_nb: number;
     private m_main_cols: any;
     private m_main_rows: any;
     public zoom: number = 1;
+    private rowNb: number = 1;
 
     // Observables for subscribers to get the events
     private static m_clickObs: any = new Subject();
@@ -45,25 +40,22 @@ export class CustomKeyBoard {
     constructor(public el: ElementRef, public renderer: Renderer) {
 
         CustomKeyBoard.m_component = this;
-
-        // Default values
-        this.m_main_column_nb = 5;
-
     }
 
     ngOnInit()
     {
-        this.resize();
-
         // Init with the @input values
+        if (this.colNb)
+            this.m_main_column_nb = this.colNb;
+
         if (this.keysMain)
         {
             this.m_main_rows = this.range(0, (this.keysMain.length - 1), this.m_main_column_nb);
             this.m_main_cols = this.range(0, this.m_main_column_nb - 1, 1);
+            this.rowNb = Math.floor((this.keysMain.length / this.m_main_column_nb + 1));
         }
 
-        if (this.colNb)
-            this.m_main_column_nb = this.colNb;
+        this.resize();
     }
 
     static get onCKClick() {
@@ -145,9 +137,15 @@ export class CustomKeyBoard {
 
     private resize()
     {
-        let referenceHeight = 300;
-        let currentHeight = window.screen.height;
-        this.zoom = referenceHeight >= (currentHeight/2)? 0.5 : 1;//currentHeight / referenceHeight;
+        // Compute the keyboard height (key height = 50px, toolbar height = 30px)
+        let keyboardHeight = (50 * this.rowNb) + 30;
+        let screenHeight = window.screen.height;
+
+        // Make sure the keyboard is not bigger than 0.40 * screen size
+        if (keyboardHeight > (screenHeight * 0.40))
+            this.zoom = (screenHeight * 0.40) / keyboardHeight; 
+        else
+            this.zoom = 1;
     }
 
     range(min, max, step)
