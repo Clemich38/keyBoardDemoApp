@@ -16,7 +16,8 @@ import { CustomKeyBoard } from '../components/customKeyBoard/custom-keyboard';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    CustomKeyBoard
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
