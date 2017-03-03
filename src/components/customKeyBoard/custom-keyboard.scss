@@ -74,6 +74,27 @@ custom-keyboard {
         transform: translate3d(0,0,0);
     }
 
+    // Default color theme (ligth)
+    .kb-toolbar {
+        background-color: $kb-border-light;
+        border: none;
+
+        .icon {
+            flex: 1;
+            color: $kb-key-text-light;
+        }
+    }
+
+    .kb-key {
+        background: $kb-bg-light;
+        color: $kb-key-text-light;
+            
+        &:active {
+            background: darken($kb-bg-light, 15%);
+        }
+    }
+
+    // Light theme
     &.kb-light {
 
         .kb-toolbar {
@@ -96,6 +117,7 @@ custom-keyboard {
         }
     }
 
+    // Dark theme
     &.kb-dark {
 
         .kb-toolbar {
